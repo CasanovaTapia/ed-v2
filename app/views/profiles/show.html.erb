@@ -1,0 +1,71 @@
+<div class="profile-show">
+	<h4><%= @profile.name %></h4>
+	<hr>
+	<p>Tag goes here eventually</p>
+
+	<div class="text-right">
+    <% if policy(@profile).edit? %>
+      <%= link_to 'Edit |', edit_profile_path(@profile) %>
+    <% end %>
+    <% if policy(@profile).destroy? %>
+      <%= link_to '| Delete', @profile, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+  </div>
+
+	<div class="row">
+		<div class="col-md-3 sidebar">
+
+			<% if @profile.avatar? %>
+				<%= image_tag(@profile.avatar.profile.url) %>
+			<% else %>
+				<%= image_tag('avatar.png') %>
+			<% end %>
+
+			<p>
+				<strong>Industry.</strong>
+				<% if @profile.industry_id? %>
+					<%= @profile.industry.title %>
+				<% else %>
+					Do you have this info ?
+				<% end %>
+			</p>
+
+			<p>
+				<strong>City.</strong>
+				<% if @profile.city_id? %>
+					<%= @profile.city.title %>
+				<% else %>
+					Do you have this info ?
+				<% end %>
+			</p>
+
+			<p>
+				<strong>Current Project.</strong>
+				<% if @profile.proj? %>
+					<%= @profile.proj %>
+					<em>at <%= link_to @profile.proj_url %></em>
+				<% else %>
+					Do you have this info ?
+				<% end %>
+			</p>
+
+			<p>
+				<strong>See more.</strong>
+				<% if @profile.site? %>
+					<%= @profile.site %>
+				<% else %>
+					Do you have this info ?
+				<% end %>
+			</p>
+
+		</div>
+
+		<div class="col-md-9 bio">
+			<% if @profile.bio? %>
+				<%= @profile.bio %>
+			<% else %>
+				This Edwardian has an empty bio. How do you know them ?
+			<% end %>
+		</div>
+	</div>
+</div>

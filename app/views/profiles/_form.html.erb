@@ -1,0 +1,51 @@
+<%= form_for(@profile) do |f| %>
+  <% if @profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+      <ul>
+      <% @profile.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class=row>
+  <div class="col-md-6">
+    <div class="form-group">
+      <%= f.text_field :name, autofocus: true, class: 'form-control', placeholder: 'Name' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :industry %>
+      <%= f.select :industry_id, options_from_collection_for_select(Industry.all, "id", "title") %>
+    </div>
+		<div class="form-group">
+			<%= f.label :city %>
+			<%= f.select :city_id, options_from_collection_for_select(City.all, "id", "title") %>
+		</div>
+    <div class="form-group">
+      <%= f.label :photo %>
+      <%= f.file_field :avatar %>
+    </div>
+  </div>
+	<div class="col-md-6">
+		<div class="form-group">
+			<%= f.text_field :proj, autofocus: true, class: 'form-control', placeholder: 'Currently working on' %>
+		</div>
+		<div class="form-group">
+			<%= f.text_field :proj_url, autofocus: true, class: 'form-control', placeholder: 'Current project website' %>
+		</div>
+		<div class="form-group">
+			<%= f.text_field :site, autofocus: true, class: 'form-control', placeholder: 'Portfolio / website' %>
+		</div>
+	</div>
+
+  <div class="col-md-12">
+    <div class="form-group">
+      <%= f.text_area :bio, autofocus: true, class: 'form-control', placeholder: 'Short bio and description of work' %>
+    </div>
+    <%= f.submit "Submit", class: 'btn' %>
+  </div>
+</div>
+<% end %>
