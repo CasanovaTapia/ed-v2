@@ -29,8 +29,19 @@
   </div>
 <% end %>
 
-<!-- HEADER LOGO -->
+<!-- USER ACTIONS -->
+<div id="acct-action" class="container">
+  <% if current_user %>
+    <p>
+      <%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+    </p>
+  <% else %>
+    <%= link_to "Log In", new_user_session_path %>
+    <%= link_to "|| New Account ||", new_user_registration_path %>
+  <% end %>
+</div>
 
+<!-- HEADER LOGO -->
   <div class="logo text-center">
     <%= image_tag src="LOGO.png" %>
     <h6>A Directory Of Creatives For Creatives</h6>

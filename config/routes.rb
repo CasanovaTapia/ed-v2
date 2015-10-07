@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   # get 'about', to: 'static#about', as: :static_about
   root 'static#about'
 
