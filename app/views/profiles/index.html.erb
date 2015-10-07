@@ -1,5 +1,20 @@
 <div class="profile-index row">
-	<div class="col-md-2">
+	<div class="col-md-2 sidebar">
+		<%= form_tag profiles_path, class: "form-inline", method: :get do %>
+	<div class="form-group">
+		<%= text_field_tag :query, params[:query] %>
+		<%= submit_tag "Search" %><br/><br/>
+		<% if params[:query].present? %>
+			<%= link_to "Clear Search", profiles_path %><br/><br/>
+		<% end %>
+	</div>
+
+	<% if current_user.present? %>
+      <p><%= link_to 'Add an Edwardian', new_profile_path %></p>
+    <% end %>
+    <p><%= link_to 'Sort by Industry', "#" %></p>
+    <p><%= link_to 'Sort by City', "#" %></p>
+<% end %>
 	</div>
 	<div class="col-md-10 row">
 		<% @profiles.each do |profile| %>

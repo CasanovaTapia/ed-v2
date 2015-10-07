@@ -21,3 +21,8 @@ end
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'pundit'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog'
+gem 'figaro'
+gem 'searchkick'

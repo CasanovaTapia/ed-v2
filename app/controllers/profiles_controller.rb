@@ -2,7 +2,11 @@ class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
 
   def index
-    @profiles = Profile.all
+    if params[:query].present?
+      @profiles = Profile.search(params[:query])
+    else
+        @profiles = Profile.all
+    end
     authorize @profiles
   end
 
