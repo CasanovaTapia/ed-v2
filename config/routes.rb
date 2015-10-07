@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
   resources :industries, :except => [:show]
   resources :cities, :except => [:show]
-  resources :profiles
+  resources :profiles do
+    resources :tags, :only => [:create, :destroy]
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

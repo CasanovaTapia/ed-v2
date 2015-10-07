@@ -3,16 +3,25 @@
 	</div>
 	<div class="col-md-10 row">
 		<% @profiles.each do |profile| %>
-			<div class="col-md-2 index-avatar">
-				<% if profile.avatar? %>
-		      <%= image_tag(profile.avatar.profile.url) %>
-		    <% else %>
-		      <%= image_tag('avatar.png') %>
-		    <% end %>
-			</div>
-			<div class="col-md-10">
-				<h6><%= profile.name %></h6>
-			</div>
+			<%= link_to profile do %>
+				<div class="col-md-2 index-avatar">
+					<% if profile.avatar? %>
+			      <%= image_tag(profile.avatar.profile.url) %>
+			    <% else %>
+			      <%= image_tag('avatar.png') %>
+			    <% end %>
+				</div>
+				<div class="col-md-10">
+					<h6><%= profile.name %></h6>
+					<p>
+						<% if profile.tags.count > 0 %>
+							<%= "#{profile.tags.first.body}, #{time_ago_in_words(profile.tags.first.created_at)} ago" %>
+						<% else %>
+							This Edwardian has not been tagged. Have you seen them ?
+						<% end %>
+					</p>
+				</div>
+			<% end %>
 		<% end %>
 	</div>
 </div>

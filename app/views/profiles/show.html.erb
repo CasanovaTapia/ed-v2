@@ -1,16 +1,13 @@
 <div class="profile-show">
 	<h4><%= @profile.name %></h4>
 	<hr>
-	<p>Tag goes here eventually</p>
-
-	<div class="text-right">
-    <% if policy(@profile).edit? %>
-      <%= link_to 'Edit |', edit_profile_path(@profile) %>
-    <% end %>
-    <% if policy(@profile).destroy? %>
-      <%= link_to '| Delete', @profile, method: :delete, data: { confirm: 'Are you sure?' } %>
-    <% end %>
-  </div>
+	<p>
+		<% if @profile.tags.count > 0 %>
+			<%= "#{@profile.tags.first.body}, #{time_ago_in_words(@profile.tags.first.created_at)} ago" %>
+		<% else %>
+			This Edwardian has not been tagged. Have you seen them ?
+		<% end %>
+	</p>
 
 	<div class="row">
 		<div class="col-md-3 sidebar">
@@ -60,12 +57,37 @@
 
 		</div>
 
-		<div class="col-md-9 bio">
-			<% if @profile.bio? %>
-				<%= @profile.bio %>
-			<% else %>
-				This Edwardian has an empty bio. How do you know them ?
-			<% end %>
+		<div class="col-md-9">
+			<div class="tag-list">
+				<%= render 'tags/new' %>
+
+
+				<% @tags.each do |tag| %>
+					<% unless tag.body == nil || tag.user == nil %>
+						<p>
+							<%= "#{tag.body}, #{time_ago_in_words(tag.created_at)} ago by #{tag.user.username}" %>
+							<%= link_to "Delete", [tag.profile, tag], method: :delete, data: { confirm: 'Are you sure ?'} %>
+						</p>
+					<% end %>
+				<% end %>
+			</div>
+
+			<div class="bio">
+				<h5>Bio</h5>
+				<% if @profile.bio? %>
+					<%= @profile.bio %>
+				<% else %>
+					This Edwardian has an empty bio. How do you know them ?
+				<% end %>
+			</div>
 		</div>
+	</div>
+	<div class="text-left">
+		<% if policy(@profile).edit? %>
+			<%= link_to 'Edit |', edit_profile_path(@profile) %>
+		<% end %>
+		<% if policy(@profile).destroy? %>
+			<%= link_to '| Delete', @profile, method: :delete, data: { confirm: 'Are you sure?' } %>
+		<% end %>
 	</div>
 </div>

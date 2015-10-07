@@ -1,0 +1,6 @@
+<%= form_for [@profile, @profile.tags.build] do |f| %>
+  <div class="form-group">
+    <%= f.text_field :body, autofocus: true, placeholder: 'Last seen at' %>
+  	<%= f.submit "Tag"%>
+	</div>
+<% end %>

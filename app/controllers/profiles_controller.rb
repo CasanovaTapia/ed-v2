@@ -7,6 +7,8 @@ class ProfilesController < ApplicationController
   end
 
   def show
+    @tags = @profile.tags
+    @tag = @profile.tags.build
     authorize @profile
   end
 
