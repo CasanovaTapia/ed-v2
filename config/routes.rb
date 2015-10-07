@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   # get 'about', to: 'static#about', as: :static_about
   root 'static#about'
 
+  resources :industries, :except => [:show]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,0 +1,6 @@
+<%= form_for(@new_industry) do |f| %>
+	<div class="form-group">
+		<%= f.text_field :title, :autofocus => true, :placeholder => 'New Industry' %>
+		<%= f.submit "Create" %>
+	</div>
+<% end %>

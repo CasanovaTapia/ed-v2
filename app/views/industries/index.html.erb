@@ -1,0 +1,11 @@
+<div class="industry-index">
+	<h3>Listing Industries</h3>
+	<%= render 'new' %>
+	<% @industries.each do |industry| %>
+		<p>
+			<%= industry.title %>
+			<%= link_to "Edit", edit_industry_path(industry) %>
+			<%= link_to "|| Delete", industry, :method => :delete, :data => { :confirm => 'Are you sure?'} %>
+		</p>
+	<% end %>
+</div>
