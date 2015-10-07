@@ -1,0 +1,11 @@
+<div class="city-index">
+	<h3>Listing Cities</h3>
+	<%= render 'new' %>
+	<% @cities.each do |city| %>
+		<p>
+			<%= city.title %>
+			<%= link_to "Edit", edit_city_path(city) %>
+			<%= link_to "|| Delete", city, :method => :delete, :data => { :confirm => 'Are you sure?'} %>
+		</p>
+	<% end %>
+</div>

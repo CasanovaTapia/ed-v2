@@ -1,0 +1,6 @@
+<%= form_for(@new_city) do |f| %>
+	<div class="form-group">
+		<%= f.text_field :title, :autofocus => true, :placeholder => 'New city' %>
+		<%= f.submit "Create" %>
+	</div>
+<% end %>
