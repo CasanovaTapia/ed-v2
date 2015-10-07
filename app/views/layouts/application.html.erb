@@ -1,14 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>EdV2</title>
+  <title>The New Edwardians</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A Directory of Creatives for Creatives.">
+  <meta name="keywords" content="edwardian, los angeles, creative, directory, art, fashion, music, collaboration, young, talent, talent agency, modeling">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class="container">
+<!-- Flash messages  -->
+<% if flash[:notice] %>
+  <div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <%= flash[:notice] %>
+  </div>
+<% elsif flash[:error] %>
+  <div class="alert alert-danger">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <%= flash[:error] %>
+  </div>
+<% elsif flash[:alert] %>
+  <div class="alert alert-warning">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <%= flash[:alert] %>
+  </div>
+<% end %>
 
+<!-- HEADER LOGO -->
+
+  <div class="logo">
+    <%= image_tag src="LOGO.png" %>
+    <h6>A Directory Of Creatives For Creatives</h6>
+  </div>
+
+
+<!-- MAIN CONTENT -->
 <%= yield %>
 
+
+</div>
 </body>
 </html>
