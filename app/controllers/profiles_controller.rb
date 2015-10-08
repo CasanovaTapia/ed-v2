@@ -30,7 +30,7 @@ class ProfilesController < ApplicationController
 
     if @profile.save
       flash[:notice] = "Edwardian was created."
-      render :show
+      redirect_to profiles_path
     else
       flash[:error] = "Edwardian was not created, please try again."
       render :edit
@@ -41,7 +41,7 @@ class ProfilesController < ApplicationController
     authorize @profile
     if @profile.update_attributes(profile_params)
       flash[:notice] = "Edwardian was updated."
-      render :show
+      redirect_to profiles_path
     else
       flash[:error] = "Edwardian was not updated, please try again."
       render :edit
