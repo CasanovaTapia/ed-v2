@@ -1,5 +1,9 @@
 class TagsController < ApplicationController
-	before_action :set_profile
+	before_action :set_profile, :except => [ :index ]
+
+	def index
+		@tags = Tag.all
+	end
 
 	def create
 		@tag = @profile.tags.new(tag_params)

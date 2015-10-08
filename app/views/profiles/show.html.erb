@@ -1,14 +1,15 @@
 <div class="profile-show">
-	<h4><%= @profile.name %></h4>
-	<hr>
-	<p>
-		<% if @profile.tags.count > 0 %>
-			<%= "#{@profile.tags.first.body}, #{time_ago_in_words(@profile.tags.first.created_at)} ago" %>
-		<% else %>
-			This Edwardian has not been tagged. Have you seen them ?
-		<% end %>
-	</p>
-
+	<div class="head">
+		<h4><%= @profile.name %></h4>
+		<hr>
+		<p class="tag">
+			<% if @profile.tags.count > 0 %>
+				<%= "Last seen at #{@profile.tags.first.body}, #{time_ago_in_words(@profile.tags.first.created_at)} ago" %>
+			<% else %>
+				This Edwardian has not been tagged. Have you seen them ?
+			<% end %>
+		</p>
+	</div>
 	<div class="row">
 		<div class="col-md-3 sidebar">
 
@@ -19,7 +20,7 @@
 			<% end %>
 
 			<p>
-				<strong>Industry.</strong>
+				<strong>INDUSTRY.</strong>
 				<% if @profile.industry_id? %>
 					<%= @profile.industry.title %>
 				<% else %>
@@ -28,7 +29,7 @@
 			</p>
 
 			<p>
-				<strong>City.</strong>
+				<strong>CITY.</strong>
 				<% if @profile.city_id? %>
 					<%= @profile.city.title %>
 				<% else %>
@@ -37,7 +38,7 @@
 			</p>
 
 			<p>
-				<strong>Current Project.</strong>
+				<strong>CURRENT PROJECT.</strong>
 				<% if @profile.proj? %>
 					<%= @profile.proj %>
 					<em>at <%= link_to @profile.proj_url %></em>
@@ -47,28 +48,44 @@
 			</p>
 
 			<p>
-				<strong>See more.</strong>
+				<strong>SEE MORE.</strong>
 				<% if @profile.site? %>
 					<%= @profile.site %>
 				<% else %>
 					Do you have this info ?
 				<% end %>
 			</p>
-
+			<p class="small">
+				<% if current_user.present? %>
+					<%= link_to "EDIT", edit_profile_path(@profile) %>
+				<% else %>
+					<%= link_to "Log In to edit", new_user_session_path %>
+				<% end %>
+			</p>
 		</div>
 
 		<div class="col-md-9">
-			<div class="tag-list">
-				<%= render 'tags/new' %>
+			<div class="taglist">
+				<h5>Tags</h5>
+				<% if current_user.present? %>
+					<%= render 'tags/new' %>
+				<% else %>
+					<p class="small"><%= link_to "Log In to update tag", new_user_session_path %></p>
+				<% end %>
 
 
-				<% @tags.each do |tag| %>
-					<% unless tag.body == nil || tag.user == nil %>
-						<p>
-							<%= "#{tag.body}, #{time_ago_in_words(tag.created_at)} ago by #{tag.user.username}" %>
-							<%= link_to "Delete", [tag.profile, tag], method: :delete, data: { confirm: 'Are you sure ?'} %>
-						</p>
+				<% if @tags.size > 0 %>
+					<% @tags.each do |tag| %>
+						<% unless tag.body == nil || tag.user == nil %>
+							<p>
+								<%= "#{tag.body}" %>
+								<small><%= "-- #{time_ago_in_words(tag.created_at)} ago by #{tag.user.username}" %></small>
+								<strong><%= link_to "|| DELETE", [tag.profile, tag], method: :delete, data: { confirm: 'Are you sure ?'} %></strong>
+							</p>
+						<% end %>
 					<% end %>
+				<% else %>
+					<p>This Edwardians has no tags. Have you seen them ?</p>
 				<% end %>
 			</div>
 
@@ -79,15 +96,19 @@
 				<% else %>
 					This Edwardian has an empty bio. How do you know them ?
 				<% end %>
+				<br/><br/><p class="small strong">
+					<% if current_user.present? %>
+						<%= link_to "EDIT BIO", edit_profile_path(@profile) %>
+					<% else %>
+						<%= link_to "Log In to edit", new_user_session_path %>
+					<% end %>
+				</p>
 			</div>
 		</div>
 	</div>
 	<div class="text-left">
-		<% if policy(@profile).edit? %>
-			<%= link_to 'Edit |', edit_profile_path(@profile) %>
-		<% end %>
 		<% if policy(@profile).destroy? %>
-			<%= link_to '| Delete', @profile, method: :delete, data: { confirm: 'Are you sure?' } %>
+			<%= link_to '|| Delete', @profile, method: :delete, data: { confirm: 'Are you sure?' } %>
 		<% end %>
 	</div>
 </div>

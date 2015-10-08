@@ -1,41 +1,47 @@
 <div class="profile-index row">
-	<div class="col-md-2 sidebar">
+	<div class="col-md-3 sidebar">
 		<%= form_tag profiles_path, class: "form-inline", method: :get do %>
-	<div class="form-group">
-		<%= text_field_tag :query, params[:query] %>
-		<%= submit_tag "Search" %><br/><br/>
-		<% if params[:query].present? %>
-			<%= link_to "Clear Search", profiles_path %><br/><br/>
+			<div class="form-group">
+				<%= text_field_tag :query, params[:query], placeholder: 'Search' %>
+				<%= button_tag(type: 'submit', class: "btn") do %>
+				 <i class="glyphicon glyphicon-search"></i>
+				<% end %>
+				<% if params[:query].present? %>
+					<%= link_to "Clear Search", profiles_path %><br/><br/>
+				<% end %>
+			</div>
 		<% end %>
-	</div>
 
-	<% if current_user.present? %>
+		<% if current_user.present? %>
       <p><%= link_to 'Add an Edwardian', new_profile_path %></p>
     <% end %>
     <p><%= link_to 'Sort by Industry', "#" %></p>
     <p><%= link_to 'Sort by City', "#" %></p>
-<% end %>
 	</div>
-	<div class="col-md-10 row">
+	<div class="col-md-9">
 		<% @profiles.each do |profile| %>
 			<%= link_to profile do %>
-				<div class="col-md-2 index-avatar">
-					<% if profile.avatar? %>
-			      <%= image_tag(profile.avatar.profile.url) %>
-			    <% else %>
-			      <%= image_tag('avatar.png') %>
-			    <% end %>
+
+			<div class="row profile-box">
+					<div class="col-md-2 index-avatar">
+						<% if profile.avatar? %>
+				      <%= image_tag(profile.avatar.profile.url) %>
+				    <% else %>
+				      <%= image_tag('avatar.png') %>
+				    <% end %>
+					</div>
+					<div class="col-md-10">
+						<h6><%= profile.name %></h6>
+						<p>
+							<% if profile.tags.count > 0 %>
+								<%= "#{profile.tags.first.body}, #{time_ago_in_words(profile.tags.first.created_at)} ago" %>
+							<% else %>
+								This Edwardian has not been tagged. Have you seen them ?
+							<% end %>
+						</p>
+					</div>
 				</div>
-				<div class="col-md-10">
-					<h6><%= profile.name %></h6>
-					<p>
-						<% if profile.tags.count > 0 %>
-							<%= "#{profile.tags.first.body}, #{time_ago_in_words(profile.tags.first.created_at)} ago" %>
-						<% else %>
-							This Edwardian has not been tagged. Have you seen them ?
-						<% end %>
-					</p>
-				</div>
+
 			<% end %>
 		<% end %>
 	</div>
