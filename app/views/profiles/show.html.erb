@@ -92,7 +92,7 @@
 			<div class="bio">
 				<h5>Bio</h5>
 				<% if @profile.bio? %>
-					<%= @profile.bio %>
+					<%= markdown_to_html @profile.bio %>
 				<% else %>
 					This Edwardian has an empty bio. How do you know them ?
 				<% end %>
