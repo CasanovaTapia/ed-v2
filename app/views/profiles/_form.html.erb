@@ -18,7 +18,7 @@
     </div>
     <div class="form-group">
       <%= f.label :industry %>
-      <%= f.select :industry_id, options_from_collection_for_select(Industry.all, "id", "title") %>
+      <%= f.select :industry_id, options_from_collection_for_select(Industry.all, "id", "title", @profile.industry_id) %>
     </div>
 		<div class="form-group">
 			<%= f.label :city %>
