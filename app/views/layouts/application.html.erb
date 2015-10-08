@@ -10,7 +10,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="container">
+<div class="container main-cont">
 <!-- Flash messages  -->
 <% if flash[:notice] %>
   <div class="alert alert-success">
@@ -31,26 +31,28 @@
 
 <!-- USER ACTIONS -->
 <div class="container acct-action">
-  <% if current_user %>
-    <p>
-      <%= link_to "Add Edwardian", new_profile_path %>
-      <%= link_to "|| About", static_about_path %>
-      <%= link_to "|| Log Out", destroy_user_session_path, method: :delete %>
-    </p>
-  <% else %>
-    <%= link_to "Log In", new_user_session_path %>
-    <%= link_to "|| New Account ||", new_user_registration_path %>
-          <%= link_to "About", static_about_path %>
-  <% end %>
+  <p>
+    <%= link_to "Home ||", root_path %>
+    <%= link_to "About ||", static_about_path %>
+    <% if current_user %>
+        <%= link_to "Add Edwardian", new_profile_path %>
+        <%= link_to "|| Log Out", destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to "Log In", new_user_session_path %>
+      <%= link_to "|| New Account", new_user_registration_path %>
+    <% end %>
+  </p>
 </div>
 
 <!-- HEADER LOGO -->
+<div class="logo text-center">
 <%= link_to root_path do %>
-  <div class="logo text-center">
+
     <%= image_tag src="LOGO.png" %>
     <h6>A Directory Of Creatives For Creatives</h6>
-  </div>
+
 <% end %>
+</div>
 
 
 <!-- MAIN CONTENT -->

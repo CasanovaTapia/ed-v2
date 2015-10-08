@@ -4,7 +4,9 @@
 
 .profile-index {
 	.sidebar {
-		border-left: solid 2px #555;
+		border-left: solid 1px #e7e7e7;
+		border-bottom: solid 1px #e7e7e7;
+		background: #f8f8f8;
 		padding: 20px 0 20px 20px;
 		text-transform: uppercase;
 		font-size: .8em;
@@ -18,7 +20,8 @@
 	}
 	.profile-box {
 		margin: 20px;
-		border-left: solid 2px #555;
+		border-left: solid 1px #e7e7e7;
+		border-bottom: solid 1px #e7e7e7;
 		padding: 20px 10px;
 	}
 }
@@ -37,7 +40,9 @@
 		}
 	}
 	.sidebar {
-		border-left: solid 2px #555;
+		border-left: solid 1px #e7e7e7;
+		border-bottom: solid 1px #e7e7e7;
+		background-color: #f8f8f8;
 		padding: 20px 0 20px 20px;
 		margin-bottom: 20px;
 		img {
@@ -46,7 +51,8 @@
 		}
 	}
 	.taglist, .bio {
-		border-left: solid 2px #555;
+		border-left: solid 1px #e7e7e7;
+		border-bottom: solid 1px #e7e7e7;
 		padding: 20px 0 20px 20px;
 		margin-bottom: 20px;
 	}

@@ -48,6 +48,7 @@
     <div class="form-group">
       <%= f.text_area :bio, autofocus: true, class: 'form-control', placeholder: 'Short bio and description of work' %>
     </div>
+    <p><em>Contact <%= mail_to 'hello@thenewedwardians.com' %> to add an Industry or City.</em></p>
     <%= f.submit "Submit", class: 'btn' %>
   </div>
 </div>

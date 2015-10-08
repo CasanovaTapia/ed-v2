@@ -41,6 +41,15 @@ a:hover {
 	text-decoration: none;
 	background-color: transparent;
 }
+@media screen
+  and (min-device-width: 1200px)
+  and (max-device-width: 1600px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+    .main-cont {
+      padding: 0 10%;
+    }
+}
+
 
 // BUTTON
 .btn{
@@ -73,6 +82,10 @@ input, textarea {
 }
 
 .logo {
+  border-bottom: solid 1px #e7e7e7;
+  border-left: solid 1px #e7e7e7;
+  background-color: #f8f8f8;
+  padding: 25px 0 10px 0;
   margin-top:25px;
   margin-bottom: 25px;
     img {
