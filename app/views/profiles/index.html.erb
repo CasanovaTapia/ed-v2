@@ -24,14 +24,14 @@
 			<%= link_to profile do %>
 
 			<div class="row profile-box">
-					<div class="col-xs-2 index-avatar">
+					<div class="col-xs-3 index-avatar">
 						<% if profile.avatar? %>
 				      <%= image_tag(profile.avatar.profile.url) %>
 				    <% else %>
 				      <%= image_tag('avatar.png') %>
 				    <% end %>
 					</div>
-					<div class="col-xs-10">
+					<div class="col-xs-9">
 						<h6><%= profile.name %></h6>
 						<p>
 							<% if profile.tags.count > 0 %>
