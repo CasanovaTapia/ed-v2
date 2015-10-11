@@ -88,7 +88,27 @@ input, textarea {
   padding: 25px 0 10px 0;
   margin-top:25px;
   margin-bottom: 25px;
-    img {
-     width: 400px;
-    }
+
+  // DESKTOP
+  @media screen
+    and (min-device-width: 1200px)
+    and (max-device-width: 1600px)
+    and (-webkit-min-device-pixel-ratio: 1) {
+      img {
+       width: 400px;
+      }
+  }
+
+  @media screen
+    and (max-device-width: 480px)
+    and (-webkit-min-device-pixel-ratio: 1) {
+      img {
+        width: 80%;
+      }
+      h6 {
+        font-size: .6em;
+      }
+
+  }
+
 }

@@ -81,7 +81,7 @@
 						<% unless tag.body == nil || tag.user == nil %>
 							<p>
 								<%= "#{tag.body}" %>
-								<small><%= "-- #{time_ago_in_words(tag.created_at)} ago by #{tag.user.username}" %></small>
+								<small><%= "-- #{time_ago_in_words(tag.created_at)} ago" %></small>
 								<strong><%= link_to "|| DELETE", [tag.profile, tag], method: :delete, data: { confirm: 'Are you sure ?'} %></strong>
 							</p>
 						<% end %>
